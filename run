@@ -1,0 +1,22 @@
+Preparar a Aplicação:
+
+Certifique-se de ter um contêiner Docker com sua aplicação preparada para ser implantada. O contêiner precisa estar hospedado em um registro acessível pelo Google Cloud Platform (GCP) Container Registry ou outro registro compatível.
+Criar o Serviço no Cloud Run:
+
+Acesse o Console do Google Cloud Platform: https://console.cloud.google.com/
+No menu lateral, selecione "Cloud Run".
+Clique em "Criar serviço".
+Escolha o método de implantação: "Contêiner".
+Selecione o local onde deseja implantar o serviço.
+Forneça um nome ao seu serviço.
+Na seção "Implantação", escolha a fonte do contêiner. Pode ser do Container Registry, Cloud Storage, ou outro registro compatível.
+Configure as opções avançadas conforme necessário (como a quantidade máxima de instâncias, variáveis de ambiente, etc.).
+Clique em "Implantar".
+Aguardar o Deploy:
+
+O Cloud Run implantará o seu serviço a partir do contêiner fornecido. Aguarde até que o processo seja concluído.
+Testar a Aplicação:
+
+Após a conclusão do deploy, o Cloud Run fornecerá uma URL para acessar o serviço.
+Use essa URL para acessar a sua aplicação e verifique se tudo está funcionando corretamente.
+Essas etapas fornecem uma visão geral do processo de deploy de uma aplicação utilizando o Cloud Run com um contêiner. Certifique-se de que sua aplicação está devidamente configurada para ser executada no Cloud Run e que o contêiner esteja configurado corretamente para ser implantado no ambiente de execução do Cloud Run.
