@@ -1,0 +1,55 @@
+Certifique-se de ter o Terraform instalado e configurado corretamente.
+
+Crie um arquivo main.tf e adicione o seguinte código:
+
+hcl
+Copy code
+# Configurações do provedor
+provider "google" {
+  credentials = file("path/to/your/credentials.json")  # Substitua pelo caminho do seu arquivo de credenciais GCP
+  project     = "your-gcp-project-id"                  # Substitua pelo ID do seu projeto GCP
+  region      = "us-central1"                          # Substitua pela região desejada
+}
+
+# Criação da VPC
+resource "google_compute_network" "my_vpc" {
+  name                    = "my-vpc"                   # Nome da sua VPC
+  auto_create_subnetworks = false                       # Desabilita a criação automática de sub-redes
+}
+
+# Criação da sub-rede associada à VPC
+resource "google_compute_subnetwork" "my_subnet" {
+  name          = "my-subnet"                          # Nome da sua sub-rede
+  ip_cidr_range = "10.0.1.0/24"                        # Faixa de IPs para a sub-rede
+  network       = google_compute_network.my_vpc.self_link  # Link da VPC associada à sub-rede
+  region        = "us-central1"                        # Região da sub-rede
+}
+
+# Criação da Máquina Virtual
+resource "google_compute_instance" "my_instance" {
+  name         = "my-instance"                         # Nome da sua instância
+  machine_type = "e2-medium"                           # Tipo da máquina virtual
+  zone         = "us-central1-a"                       # Zona onde a instância será criada
+  boot_disk {
+    initialize_params {
+      image = "debian-cloud/debian-10"                 # Imagem do SO para a instância
+    }
+  }
+
+  network_interface {
+    network = google_compute_network.my_vpc.id         # ID da VPC associada à instância
+    subnetwork = google_compute_subnetwork.my_subnet.id # ID da sub-rede associada à instância
+  }
+}
+Certifique-se de substituir as variáveis ​​como path/to/your/credentials.json, your-gcp-project-id e outras conforme necessário.
+
+Abra um terminal e navegue até o diretório onde está o arquivo main.tf.
+
+Execute os seguintes comandos:
+
+bash
+Copy code
+terraform init              # Inicializa o diretório de trabalho do Terraform
+terraform plan              # Verifica as alterações planejadas
+terraform apply --auto-approve   # Aplica as alterações
+Isso criará uma VPC com uma sub-rede associada e uma máquina virtual no GCP usando o Terraform. Lembre-se de verificar e personalizar as configurações conforme suas necessidades antes de aplicar as alterações.
