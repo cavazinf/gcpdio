@@ -1,0 +1,43 @@
+Criar um Cluster Kubernetes no GKE:
+
+Acesse o Console do Google Cloud Platform: https://console.cloud.google.com/
+No painel de navegação, clique em "Kubernetes Engine" e, em seguida, em "Clusters".
+Clique em "Criar cluster".
+Defina as configurações do cluster, como o nome, a localização, o tipo de máquina, o número de nós e outras configurações conforme necessário.
+Clique em "Criar" para criar o cluster Kubernetes.
+Configurar o Acesso ao Cluster:
+
+No terminal local, configure o acesso ao cluster Kubernetes recém-criado executando o comando:
+bash
+Copy code
+gcloud container clusters get-credentials NOME_DO_CLUSTER --zone ZONA
+Substitua NOME_DO_CLUSTER pelo nome do seu cluster e ZONA pela zona onde está localizado o cluster.
+Implantar o microservice-demo:
+
+Clone o repositório do microservice-demo do GitHub:
+
+bash
+Copy code
+git clone https://github.com/GoogleCloudPlatform/microservices-demo.git
+cd microservices-demo/kubernetes-manifests/
+Implante o aplicativo no cluster Kubernetes executando o comando:
+
+bash
+Copy code
+kubectl apply -f .
+Isso implantará todos os serviços necessários para o microservice-demo no cluster.
+
+Verificar a Implantação:
+
+Verifique se os pods estão em execução executando o comando:
+bash
+Copy code
+kubectl get pods
+Isso deve exibir uma lista dos pods implantados no cluster.
+Acessar o Aplicativo:
+
+O microservice-demo pode conter vários serviços. Descubra o serviço de frontend para acessar o aplicativo executando:
+bash
+Copy code
+kubectl get svc frontend-external --output=jsonpath='{.status.loadBalancer.ingress[0].ip}'
+Esse comando fornecerá o IP externo do serviço de frontend. Use esse IP no navegador para acessar o aplicativo.
