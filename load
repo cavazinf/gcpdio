@@ -1,0 +1,64 @@
+Certifique-se de ter o Terraform instalado e configurado corretamente.
+
+Crie um arquivo main.tf e adicione o seguinte código:
+
+hcl
+Copy code
+# Configurações do provedor
+provider "google" {
+  credentials = file("path/to/your/credentials.json")  # Substitua pelo caminho do seu arquivo de credenciais GCP
+  project     = "your-gcp-project-id"                  # Substitua pelo ID do seu projeto GCP
+  region      = "us-central1"                          # Substitua pela região desejada
+}
+
+# Criação de um Instance Template
+resource "google_compute_instance_template" "my_instance_template" {
+  name                    = "my-instance-template"        # Nome do Instance Template
+  machine_type            = "e2-medium"                   # Tipo da máquina virtual
+  can_ip_forward          = false                         # Indica se a máquina pode encaminhar tráfego IP
+  tags                    = ["http-server", "https-server"] # Tags para a instância
+
+  # Configuração do disco de inicialização
+  disk {
+    source_image = "debian-cloud/debian-10"              # Imagem do SO para a instância
+  }
+
+  # Configuração da rede
+  network_interface {
+    network = "default"                                  # Rede padrão
+  }
+}
+
+# Criação de um Instance Group
+resource "google_compute_instance_group_manager" "my_instance_group" {
+  name               = "my-instance-group"                # Nome do Instance Group
+  base_instance_name = "my-instance"                      # Nome base das instâncias
+  instance_template  = google_compute_instance_template.my_instance_template.self_link # Link do Instance Template
+  target_size        = 2                                  # Número de instâncias no grupo
+
+  # Configuração do balanceamento de carga
+  named_port {
+    name = "http"                                        # Nome da porta
+    port = 80                                            # Número da porta
+  }
+
+  # Configuração do AutoScaling
+  autoscaling {
+    max_replicas        = 5                               # Número máximo de instâncias
+    min_replicas        = 2                               # Número mínimo de instâncias
+    cool_down_period    = 60                              # Tempo de resfriamento em segundos
+    cpu_utilization_target = 0.8                          # Meta de utilização da CPU
+  }
+}
+Certifique-se de substituir as variáveis como path/to/your/credentials.json, your-gcp-project-id e outras conforme necessário.
+
+No terminal, navegue até o diretório onde está o arquivo main.tf.
+
+Execute os seguintes comandos:
+
+bash
+Copy code
+terraform init              # Inicializa o diretório de trabalho do Terraform
+terraform plan              # Verifica as alterações planejadas
+terraform apply --auto-approve   # Aplica as alterações
+Isso criará um Instance Template e um Instance Group com Load Balancer no GCP usando o Terraform. Lembre-se de verificar e personalizar as configurações conforme suas necessidades antes de aplicar as alterações.
