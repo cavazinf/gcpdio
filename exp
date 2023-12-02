@@ -1,0 +1,29 @@
+Exportação de Dados de Faturamento para o BigQuery:
+Acesse o Console do Google Cloud Platform:
+
+Vá para o Console do Google Cloud Platform.
+Faça login na sua conta do Google.
+Acesse a seção de Faturamento:
+
+No menu do lado esquerdo, clique em "Faturamento".
+Certifique-se de ter as permissões necessárias para gerenciar o faturamento do projeto.
+Navegue até a Configuração de Exportação:
+
+Selecione "Exportar para o BigQuery" na seção "Faturamento".
+Clique em "Configurar".
+Defina as Configurações de Exportação:
+
+Escolha um projeto do Google Cloud.
+Escolha um conjunto de dados no BigQuery para onde deseja exportar os dados de faturamento.
+Personalize o nome da tabela e outras configurações conforme necessário.
+Habilitar a Exportação:
+
+Após configurar as opções conforme desejado, clique em "Salvar" para ativar a exportação.
+Verificação e Monitoramento:
+
+Acompanhe a exportação dos dados para garantir que esteja funcionando corretamente.
+Acesse o BigQuery para visualizar os dados exportados e executar consultas analíticas.
+Exportação para o Cloud Storage e Pub/Sub:
+Além do BigQuery, você pode configurar a exportação para o Cloud Storage ou Pub/Sub seguindo etapas semelhantes, escolhendo o destino desejado para os registros de uso e custo.
+
+A exportação do faturamento permite analisar, processar e armazenar esses dados em serviços externos para criar relatórios personalizados, realizar análises detalhadas, ou aplicar algoritmos de machine learning, por exemplo.
