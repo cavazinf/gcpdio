@@ -1,0 +1,13 @@
+Acesse o Console do GCP: Vá para console.cloud.google.com.
+Ative o Cloud Shell: Clique no ícone do Cloud Shell no canto superior direito da barra de navegação do Console do GCP.
+O Cloud Shell fornecerá uma janela de terminal pronta para uso. Você terá acesso a várias ferramentas de linha de comando, como gcloud, gsutil, kubectl e muito mais.
+
+Alguns exemplos de uso no Cloud Shell:
+
+Configuração do gcloud: Você pode autenticar-se com o Google Cloud, definir variáveis de ambiente e configurar projetos usando comandos como gcloud auth login, gcloud config set project PROJECT_ID, etc.
+
+Gerenciamento de recursos: Você pode criar, modificar e gerenciar recursos do GCP, como instâncias de máquinas virtuais, bancos de dados, armazenamento e muito mais.
+
+Implantação e monitoramento: Pode implantar aplicativos, configurar serviços e monitorar métricas usando ferramentas disponíveis no Cloud Shell.
+
+Certifique-se de que as permissões da sua conta no GCP permitam o uso do Cloud Shell e que você esteja trabalhando no projeto correto para evitar problemas de acesso ou configuração inadequada.
