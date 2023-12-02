@@ -1,0 +1,52 @@
+Configuração do Terraform:
+Primeiro, você precisará ter seus arquivos de configuração do Terraform. Crie um diretório chamado terraform e crie arquivos para definir sua infraestrutura. Por exemplo, um arquivo main.tf:
+
+hcl
+Copy code
+provider "google" {
+  credentials = file("path/to/your/credentials.json")
+  project     = "your-project-id"
+  region      = "us-central1"
+}
+
+resource "google_compute_instance" "example_instance" {
+  name         = "example-instance"
+  machine_type = "n1-standard-1"
+  zone         = "us-central1-a"
+
+  boot_disk {
+    initialize_params {
+      image = "debian-cloud/debian-10"
+    }
+  }
+
+  network_interface {
+    network = "default"
+  }
+}
+Configuração do Cloud Build:
+Agora, crie um arquivo cloudbuild.yaml para configurar o Cloud Build:
+
+yaml
+Copy code
+steps:
+  - name: 'gcr.io/cloud-builders/terraform'
+    args: ['init', 'terraform']
+    dir: 'terraform'
+
+  - name: 'gcr.io/cloud-builders/terraform'
+    args: ['plan', '-out=tfplan', 'terraform']
+    dir: 'terraform'
+
+  - name: 'gcr.io/cloud-builders/terraform'
+    args: ['apply', 'tfplan']
+    dir: 'terraform'
+    env:
+      - 'GOOGLE_APPLICATION_CREDENTIALS=/workspace/key.json'
+Certifique-se de substituir your-project-id no arquivo main.tf pelo ID do seu projeto e fornecer um caminho válido para suas credenciais no arquivo cloudbuild.yaml.
+
+Configuração do Cloud Build Trigger:
+Depois, você precisa criar um gatilho (trigger) no Cloud Build para acionar a execução da compilação. Isso pode ser feito no Console do Google Cloud ou usando o CLI do Google Cloud SDK.
+
+Execução do Cloud Build:
+Faça alterações nos arquivos do Terraform e, em seguida, envie-os para o repositório conectado ao Cloud Build. O gatilho que você configurou acionará automaticamente o Cloud Build para executar as etapas definidas no arquivo cloudbuild.yaml.
