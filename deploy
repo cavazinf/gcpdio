@@ -1,0 +1,27 @@
+Crie um arquivo app.yaml na raiz do seu projeto com o seguinte conteúdo:
+yaml
+Copy code
+runtime: python39  # Substitua pelo runtime adequado da sua aplicação
+
+env_variables:
+  YOUR_ENV_VARIABLE: 'value'  # Substitua com suas variáveis de ambiente se necessário
+
+automatic_scaling:
+  min_instances: 1   # Número mínimo de instâncias
+  max_instances: 10  # Número máximo de instâncias (pode ser ajustado conforme necessário)
+  cool_down_period: 120 seconds  # Tempo de resfriamento (cooldown period)
+  cpu_utilization:
+    target_utilization: 0.6  # Utilização média desejada da CPU
+
+instance_class: F4_1G  # Classe de instância personalizada (substitua pela desejada)
+Execute o comando para fazer o deploy da aplicação:
+bash
+Copy code
+gcloud app deploy app.yaml
+Esteja ciente de substituir as configurações do arquivo app.yaml com as específicas para o seu aplicativo, incluindo o runtime, env_variables, e quaisquer outras configurações necessárias para a sua aplicação.
+
+Certifique-se de ter o Google Cloud SDK instalado e configurado no seu ambiente local.
+
+Após executar o comando de deploy, siga as instruções para fazer o upload da sua aplicação para o Google App Engine.
+
+Esse arquivo app.yaml pode ser personalizado com base nas necessidades específicas da sua aplicação e das configurações de recursos que você deseja para o Auto Scaling e a classe da instância no App Engine. Certifique-se de consultar a documentação do Google Cloud para mais detalhes sobre as configurações possíveis no arquivo app.yaml.
