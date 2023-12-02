@@ -1,0 +1,29 @@
+Acesso ao Console do Google Cloud Platform:
+
+Acesse o Console do Google Cloud Platform.
+Faça login na sua conta do Google.
+Navegação até a página "Faturamento":
+
+No painel de navegação, clique no ícone do menu e selecione "Faturamento".
+Certifique-se de ter os privilégios adequados para visualizar e editar as configurações de faturamento.
+Configuração do Orçamento:
+
+Na seção "Faturamento", selecione "Orçamento e Uso" no menu lateral esquerdo.
+Clique no botão "Criar orçamento".
+Definição das Propriedades do Orçamento:
+
+Preencha os detalhes do orçamento:
+Nome do orçamento: Um nome descritivo para identificar o orçamento.
+Período de tempo: Escolha o período de tempo para o orçamento (mensal, trimestral, anual).
+Limite de gastos: Defina o limite de gastos para receber alertas quando os custos se aproximarem ou excederem esse valor.
+Alertas: Configure alertas por e-mail quando o orçamento atingir um determinado percentual do limite definido.
+Adição de Notificações:
+
+Defina quem deve receber notificações sobre o orçamento (por exemplo, administradores de conta).
+Conclusão e Ativação:
+
+Revise as configurações e clique em "Concluir" ou "Ativar" para definir o orçamento.
+Monitoramento e Gerenciamento:
+
+Depois de criar o orçamento, monitore regularmente os gastos para garantir que estejam dentro dos limites definidos.
+Ajuste o orçamento conforme necessário com base nas necessidades do projeto.
